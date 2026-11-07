@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#160908">
+<title>Prime Recovery Club — Réserver</title>
+<meta name="description" content="Sauna, bain glacé, lumière rouge et massage à Oasis, Casablanca. Réservez votre séance en moins d'une minute.">
+<meta property="og:title" content="Prime Recovery Club — Réservez votre séance">
+<meta property="og:description" content="Sauna 90°, bain glacé 4°, lumière rouge, massage. Oasis, Casablanca.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://abdell-el.github.io/prime-recovery/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#160908;
+  --plaster:#1F0D0B;
+  --surface:#251210;
+  --ink:#F4E7E1;
+  --muted:#B39890;
+  --faint:#7D625B;
+  --line:#3B201B;
+  --brand:#7E1C18;
+  --brand-hi:#952620;
+  --led:#FF9466;
+  --heat:#E3774F;
+  --ice:#A9D6E3;
+  --off:#55362F;
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif;font-size:16px;line-height:1.5;padding-bottom:110px;overflow-x:hidden;font-feature-settings:"kern","liga"}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--led);outline-offset:3px;border-radius:4px}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
+
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0 16px}
+.mark b{font-family:"Bodoni Moda",serif;font-weight:500;font-size:1.15rem;letter-spacing:.01em;line-height:1.05;display:block}
+.mark small{display:block;color:var(--muted);font-size:.75rem;margin-top:2px}
+.lang{display:flex;border:1px solid var(--line);border-radius:20px;padding:3px;gap:2px;flex:none}
+.lang button{background:none;border:0;padding:5px 11px;font-size:.8125rem;cursor:pointer;color:var(--muted);border-radius:16px;transition:color .25s,background .25s}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+
+/* ---------- hero: the alcove wall, LED outlines switching on ---------- */
+.wall{position:relative;aspect-ratio:520/430;border-radius:6px;overflow:hidden;
+  background:radial-gradient(70% 55% at 50% 100%,#3A1612 0%,transparent 70%),linear-gradient(180deg,#1C0B0A,#261110 70%,#1A0A09)}
+.wall canvas,.wall svg{position:absolute;inset:0;width:100%;height:100%}
+.wall svg .led{fill:none;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.wall svg .halo{fill:none;stroke-width:14;opacity:0;stroke-dasharray:1;stroke-dashoffset:1}
+.wall svg .inner{opacity:0}
+.temp{position:absolute;color:var(--ink);text-align:center;width:24%;opacity:0}
+.temp b{display:block;font-family:"Bodoni Moda",serif;font-weight:400;font-size:clamp(1.9rem,9vw,2.7rem);line-height:1;letter-spacing:-.02em;font-variant-numeric:lining-nums tabular-nums}
+.temp span{display:block;font-size:.6875rem;color:var(--muted);margin-top:4px;line-height:1.2}
+.temp.hot{left:5.5%;bottom:22%}
+.temp.cold{right:5.5%;bottom:22%}
+.wall.lit .led{animation:draw 1.5s var(--ease) forwards}
+.wall.lit .halo{animation:draw 1.5s var(--ease) forwards,haloOn .8s ease-out forwards}
+.wall.lit .a2 .led,.wall.lit .a2 .halo{animation-delay:.35s,.35s}
+.wall.lit .a3 .led,.wall.lit .a3 .halo{animation-delay:.6s,.6s}
+.wall.lit .inner{animation:fade 1.2s ease-out 1.2s forwards}
+.wall.lit .temp{animation:up .8s var(--ease) forwards}
+.wall.lit .temp.hot{animation-delay:1.3s}.wall.lit .temp.cold{animation-delay:1.45s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes haloOn{0%{opacity:0}40%{opacity:.55}55%{opacity:.2}70%{opacity:.5}100%{opacity:.38}}
+@keyframes fade{to{opacity:1}}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.hero h1{font-family:"Bodoni Moda",serif;font-weight:400;font-size:clamp(2.6rem,11vw,3.5rem);line-height:1;letter-spacing:-.025em;margin:28px 0 14px}
+.hero h1 em{font-style:italic;color:var(--heat)}
+.hero .lead{color:var(--muted);max-width:40ch;font-size:1.0625rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:26px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts div{padding:14px 0;font-size:.8125rem;color:var(--muted);line-height:1.3}
+.facts div+div{padding-left:14px;border-left:1px solid var(--line)}
+.facts b{display:block;color:var(--ink);font-weight:500;font-size:.9375rem;margin-bottom:2px}
+
+/* ---------- steps ---------- */
+section{margin-top:52px}
+h2{font-family:"Bodoni Moda",serif;font-weight:400;font-size:1.75rem;display:flex;gap:14px;align-items:baseline;margin-bottom:16px;letter-spacing:-.01em}
+h2 .n{font-family:Figtree,sans-serif;font-size:.8125rem;color:var(--led);font-weight:600;width:26px;height:28px;border:1px solid currentColor;border-radius:13px 13px 2px 2px;display:inline-grid;place-items:center;transform:translateY(-3px);flex:none}
+
+.sessions{display:grid;border-top:1px solid var(--line)}
+.session{position:relative;display:grid;grid-template-columns:1fr auto;gap:2px 12px;text-align:left;padding:18px 6px;background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;transition:padding .4s var(--ease),background .4s}
+.session::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--led);box-shadow:0 0 12px var(--led);transform:scaleY(0);transform-origin:top;transition:transform .4s var(--ease)}
+.session .t{font-weight:600;font-size:1.0625rem}
+.session .d{color:var(--muted);font-size:.875rem;grid-column:1}
+.session .p{grid-row:1/3;grid-column:2;align-self:center;font-family:"Bodoni Moda",serif;font-size:1.15rem;white-space:nowrap}
+.session .p small{font-family:Figtree,sans-serif;font-size:.75rem;color:var(--muted);margin-left:3px}
+.session[aria-pressed="true"]{background:var(--surface);padding-left:20px}
+.session[aria-pressed="true"]::before{transform:scaleY(1)}
+.note{color:var(--faint);font-size:.8125rem;margin-top:10px}
+
+.circuit{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--ease)}
+.circuit>div{overflow:hidden}
+.circuit.on{grid-template-rows:1fr}
+.circuit .in{margin-top:14px;padding:16px;background:var(--surface);border-radius:6px}
+.circuit .label{display:flex;justify-content:space-between;font-size:.8125rem;color:var(--muted);margin-bottom:10px}
+.bar{display:flex;height:6px;gap:3px;border-radius:3px}
+.bar span{border-radius:3px;transform:scaleX(0);transform-origin:left}
+.bar .h{background:var(--heat);flex:12}.bar .c{background:var(--ice);flex:3}.bar .r{background:var(--off);flex:5}
+.legend{display:flex;gap:16px;margin-top:10px;font-size:.75rem;color:var(--muted)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+.circuit.on .bar span{animation:fill .45s var(--ease) forwards}
+.circuit.on .bar span:nth-child(n){animation-delay:calc(var(--k) * 90ms + 150ms)}
+@keyframes fill{to{transform:scaleX(1)}}
+
+.days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none;margin:0 -2px}
+.days::-webkit-scrollbar{display:none}
+.day{flex:0 0 60px;padding:12px 0 10px;border:1px solid var(--line);background:none;border-radius:30px 30px 4px 4px;cursor:pointer;text-align:center;transition:background .25s,border-color .25s}
+.day small{display:block;color:var(--muted);font-size:.75rem;text-transform:capitalize}
+.day b{font-family:"Bodoni Moda",serif;font-size:1.35rem;font-weight:400}
+.day[aria-pressed="true"]{background:var(--brand);border-color:var(--brand-hi)}
+.day[aria-pressed="true"] small{color:var(--ink)}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.slot{padding:9px 0 7px;border:1px solid var(--line);background:none;border-radius:5px;cursor:pointer;font-size:.9375rem;font-variant-numeric:tabular-nums;line-height:1.2;transition:background .2s,color .2s,border-color .2s}
+.slot small{display:block;font-size:.6875rem;color:var(--faint);margin-top:2px}
+.slot.low small{color:var(--heat)}
+.slots.anim .slot{animation:pop .35s var(--ease) both}
+@keyframes pop{from{opacity:0;transform:translateY(5px)}}
+.slot:disabled{color:var(--off);cursor:not-allowed}
+.slot:disabled small{color:var(--off)}
+.slot[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.slot[aria-pressed="true"] small{color:#6B4A43}
+
+.toggle{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:22px;padding:16px 0;border-top:1px solid var(--line)}
+.toggle>span small{display:block;color:var(--muted);font-size:.875rem}
+.switch{width:48px;height:28px;border-radius:14px;border:0;background:var(--off);position:relative;cursor:pointer;flex:none;transition:background .25s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .3s var(--ease)}
+.switch[aria-checked="true"]{background:var(--heat)}
+.switch[aria-checked="true"]::after{transform:translateX(20px)}
+
+.field{position:relative;margin-top:14px}
+.field input{width:100%;padding:22px 14px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);transition:border-color .25s}
+.field label{position:absolute;left:15px;top:15px;color:var(--muted);pointer-events:none;transition:all .2s var(--ease)}
+.field input:focus{border-color:var(--led);outline:none}
+.field input:focus+label,.field input:not(:placeholder-shown)+label{top:6px;font-size:.75rem;color:var(--led)}
+.hint{font-size:.8125rem;color:var(--faint);margin-top:8px}
+
+/* ---------- dock ---------- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(31,13,11,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:14px 0 calc(14px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .5s var(--ease)}
+.dock.on{transform:none}
+.dock .wrap{display:flex;align-items:center;gap:14px}
+.summary{flex:1;font-size:.875rem;color:var(--muted);line-height:1.35;min-width:0}
+.summary b{display:block;color:var(--ink);font-size:.9375rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.summary b span{font-weight:400;color:var(--muted)}
+.cta{min-width:118px;background:var(--brand);color:var(--ink);border:1px solid var(--brand-hi);border-radius:6px;padding:14px 18px;font-weight:600;cursor:pointer;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .25s,background .25s}
+.cta:not(:disabled):hover{background:var(--brand-hi)}
+.cta:disabled{opacity:.4;cursor:not-allowed}
+.cta.busy{pointer-events:none}
+.spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- confirmation ticket ---------- */
+.done{position:fixed;inset:0;z-index:40;background:var(--bg);display:flex;justify-content:center;padding:28px 20px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;overflow-y:auto}
+.done.on{opacity:1;visibility:visible}
+.done .inner{max-width:400px;width:100%;margin:auto 0}
+.seal{width:76px;height:86px;margin:0 0 18px}
+.seal path{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.done.on .seal .arc{animation:draw 1s var(--ease) .1s forwards}
+.done.on .seal .chk{animation:draw .45s var(--ease) .9s forwards}
+.done h3{font-family:"Bodoni Moda",serif;font-weight:400;font-size:2.4rem;letter-spacing:-.02em;line-height:1.05}
+.done .sub{color:var(--muted);margin-top:6px}
+.ticket{margin-top:22px;border:1px solid var(--line);border-radius:8px;background:var(--surface);opacity:0}
+.done.on .ticket{animation:up .5s var(--ease) .5s forwards}
+.ticket dl{display:grid;grid-template-columns:auto 1fr;gap:10px 16px;padding:16px 18px;font-size:.9375rem}
+.ticket dt{color:var(--muted)}
+.ticket dd{text-align:right}
+.ticket .ref{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-top:1px dashed var(--line);font-size:.8125rem;color:var(--muted)}
+.ticket .ref b{font-family:"Bodoni Moda",serif;font-weight:500;font-size:1.05rem;color:var(--ink);letter-spacing:.04em}
+.wa{margin-top:14px;background:#0E1A17;border-radius:10px;padding:12px;opacity:0}
+.done.on .wa{animation:up .5s var(--ease) 1.2s forwards}
+.wa .who{font-size:.75rem;color:#8FA9A0;margin-bottom:8px}
+.bubble{background:#1E3A32;color:#E8F1EE;border-radius:3px 10px 10px 10px;padding:10px 12px 18px;font-size:.875rem;line-height:1.45;position:relative;white-space:pre-line}
+.bubble time{position:absolute;right:10px;bottom:4px;font-size:.6875rem;color:#8FA9A0}
+.actions{display:flex;gap:10px;margin-top:18px}
+.actions button{flex:1;padding:12px 10px;border-radius:6px;cursor:pointer;font-size:.9375rem;background:none;border:1px solid var(--line)}
+.actions .primary{flex:1.5;white-space:nowrap;background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+
+footer{margin-top:56px;color:var(--faint);font-size:.8125rem;text-align:center}
+
+/* page-load: header and copy settle after the wall lights */
+.intro header{animation:up .7s var(--ease) both}
+.intro .hero h1,.intro .lead,.intro .facts{animation:up .8s var(--ease) both}
+.intro .hero h1{animation-delay:1.4s}.intro .lead{animation-delay:1.55s}.intro .facts{animation-delay:1.7s}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .wall svg .led,.seal path{stroke-dashoffset:0}
+  .wall svg .halo{stroke-dashoffset:0;opacity:.38}
+  .wall svg .inner,.temp,.ticket,.wa{opacity:1}
+  .bar span{transform:none}
+}
+</style>
+</head>
+<body class="intro">
+<div class="wrap">
+  <header>
+    <div class="mark"><b>Prime Recovery</b><small>Oasis, Casablanca</small></div>
+    <div class="lang" role="group" aria-label="Langue / Language">
+      <button data-lang="fr" aria-pressed="true">FR</button>
+      <button data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="wall" id="wall" aria-hidden="true">
+      <canvas id="steam"></canvas>
+      <svg viewBox="0 0 520 430" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="warm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFB08A"/><stop offset="1" stop-color="#E3774F"/></linearGradient>
+          <linearGradient id="cool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D8F0F7"/><stop offset="1" stop-color="#7FB8C9"/></linearGradient>
+          <linearGradient id="mix" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF9466"/><stop offset=".5" stop-color="#FFC7A8"/><stop offset="1" stop-color="#A9D6E3"/></linearGradient>
+          <radialGradient id="pool" cx=".5" cy="1" r=".9"><stop offset="0" stop-color="#FF9466" stop-opacity=".22"/><stop offset="1" stop-color="#FF9466" stop-opacity="0"/></radialGradient>
+          <radialGradient id="poolC" cx=".5" cy="1" r=".9"><stop offset="0" stop-color="#A9D6E3" stop-opacity=".18"/><stop offset="1" stop-color="#A9D6E3" stop-opacity="0"/></radialGradient>
+          <filter id="blur"><feGaussianBlur stdDeviation="6"/></filter>
+        </defs>
+        <!-- floor line -->
+        <line x1="0" y1="392" x2="520" y2="392" stroke="#3B201B" stroke-width="1"/>
+        <!-- inner light washes (fade in after LEDs) -->
+        <path class="inner" d="M30 392V250a52 52 0 0 1 104 0v142Z" fill="url(#pool)"/>
+        <path class="inner" d="M386 392V250a52 52 0 0 1 104 0v142Z" fill="url(#poolC)"/>
+        <path class="inner" d="M172 392V170a88 88 0 0 1 176 0v222Z" fill="url(#pool)" opacity=".8"/>
+        <!-- left alcove: heat -->
+        <g class="a1">
+          <path class="halo" pathLength="1" d="M30 392V250a52 52 0 0 1 104 0v142" stroke="url(#warm)" filter="url(#blur)"/>
+          <path class="led" pathLength="1" d="M30 392V250a52 52 0 0 1 104 0v142" stroke="url(#warm)"/>
+        </g>
+        <!-- center doorway -->
+        <g class="a2">
+          <path class="halo" pathLength="1" d="M172 392V170a88 88 0 0 1 176 0v222" stroke="url(#mix)" filter="url(#blur)"/>
+          <path class="led" pathLength="1" d="M172 392V170a88 88 0 0 1 176 0v222" stroke="url(#mix)"/>
+          <path class="led" pathLength="1" d="M190 392V172a70 70 0 0 1 140 0v220" stroke="url(#mix)" stroke-width="1" opacity=".55"/>
+        </g>
+        <!-- right alcove: cold -->
+        <g class="a3">
+          <path class="halo" pathLength="1" d="M386 392V250a52 52 0 0 1 104 0v142" stroke="url(#cool)" filter="url(#blur)"/>
+          <path class="led" pathLength="1" d="M386 392V250a52 52 0 0 1 104 0v142" stroke="url(#cool)"/>
+        </g>
+        <!-- floor reflections -->
+        <rect class="inner" x="20" y="393" width="480" height="37" fill="url(#pool)" opacity=".6"/>
+      </svg>
+      <div class="temp hot"><b id="tHot">90°</b><span data-i="saunaLong"></span></div>
+      <div class="temp cold"><b id="tCold">4°</b><span data-i="iceLong"></span></div>
+    </div>
+
+    <h1 id="h1"></h1>
+    <p class="lead" data-i="intro"></p>
+    <div class="facts">
+      <div><b data-i="f1a"></b><span data-i="f1b"></span></div>
+      <div><b data-i="f2a"></b><span data-i="f2b"></span></div>
+      <div><b data-i="f3a"></b><span data-i="f3b"></span></div>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="n">1</span><span data-i="step1"></span></h2>
+    <div class="sessions" id="sessions"></div>
+    <div class="circuit" id="circuit"><div><div class="in">
+      <div class="label"><span data-i="circuit"></span><span>60 min</span></div>
+      <div class="bar" id="bar"></div>
+      <div class="legend"><span><i style="background:var(--heat)"></i><span data-i="sauna"></span> 12 min</span><span><i style="background:var(--ice)"></i><span data-i="ice"></span> 3 min</span><span><i style="background:var(--off)"></i><span data-i="rest"></span> 5 min</span></div>
+    </div></div></div>
+    <p class="note" data-i="sample"></p>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span><span data-i="step2"></span></h2>
+    <div class="days" id="days"></div>
+    <div class="slots" id="slots"></div>
+    <div class="toggle">
+      <span><span data-i="women"></span><small data-i="womenSub"></small></span>
+      <button class="switch" id="women" role="switch" aria-checked="false"></button>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span><span data-i="step3"></span></h2>
+    <div class="field"><input id="name" autocomplete="name" placeholder=" "><label for="name" data-i="name"></label></div>
+    <div class="field"><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder=" "><label for="phone" data-i="phone"></label></div>
+    <p class="hint" data-i="hint"></p>
+  </section>
+
+  <footer data-i="footer"></footer>
+</div>
+
+<div class="dock" id="dock">
+  <div class="wrap">
+    <div class="summary" id="summary"></div>
+    <button class="cta" id="book" disabled><span data-i="book"></span></button>
+  </div>
+</div>
+
+<div class="done" id="done" role="dialog" aria-modal="true" aria-labelledby="doneTitle">
+  <div class="inner">
+    <svg class="seal" viewBox="0 0 76 86" aria-hidden="true">
+      <path class="arc" pathLength="1" d="M4 84V38a34 34 0 0 1 68 0v46" stroke="#FF9466" stroke-width="2"/>
+      <path class="chk" pathLength="1" d="M25 52l9 9 17-19" stroke="#F4E7E1" stroke-width="2.5"/>
+    </svg>
+    <h3 id="doneTitle" data-i="booked"></h3>
+    <p class="sub" data-i="bookedSub"></p>
+    <div class="ticket">
+      <dl id="details"></dl>
+      <div class="ref"><span data-i="refLabel"></span><b id="ref"></b></div>
+    </div>
+    <div class="wa">
+      <div class="who" data-i="waFrom"></div>
+      <div class="bubble" id="bubble"></div>
+    </div>
+    <div class="actions">
+      <button class="primary" id="ics" data-i="calendar"></button>
+      <button id="again" data-i="again"></button>
+    </div>
+  </div>
+</div>
+
+<script>
+const T={
+  fr:{
+    locale:"fr-FR",today:"Auj.",
+    saunaLong:"sauna finlandais",iceLong:"bain glacé",sauna:"Sauna",ice:"Bain glacé",rest:"Repos",
+    h1:'Chaud, froid, puis <em>repos.</em>',
+    intro:"Sauna, bain glacé, lumière rouge et massage, dans un seul lieu. Réservez votre séance en moins d'une minute.",
+    f1a:"7 h – 22 h",f1b:"Tous les jours",f2a:"Espace femmes",f2b:"Dédié et privé",f3a:"WhatsApp",f3b:"Confirmation immédiate",
+    step1:"Choisissez une séance",step2:"Choisissez un horaire",step3:"Vos coordonnées",
+    sample:"Tarifs indicatifs pour cette maquette.",
+    circuit:"Circuit contraste, 3 tours",
+    women:"Espace femmes",womenSub:"Réserver dans l'espace dédié aux femmes",
+    name:"Nom complet",phone:"Numéro WhatsApp",hint:"Votre confirmation et l'itinéraire arrivent sur WhatsApp.",
+    footer:"Maquette conçue par System Unity",
+    book:"Réserver",busy:"Confirmation…",booked:"C'est réservé.",bookedSub:"Votre confirmation vient de partir sur WhatsApp.",
+    refLabel:"Référence",waFrom:"Prime Recovery Club, sur WhatsApp",calendar:"Ajouter au calendrier",again:"Nouvelle séance",
+    dSession:"Séance",dDate:"Date",dTime:"Heure",dSpace:"Espace",dPrice:"Total",mixed:"Mixte",wspace:"Femmes",
+    pickTime:"Choisissez un jour et un horaire",left:n=>n===1?"1 place":`${n} places`,full:"Complet",
+    wa:(n,s,d,t,r)=>`Bonjour ${n},\nVotre séance ${s} est confirmée pour ${d} à ${t}.\nRéférence ${r}\n\nPrime Recovery Club, Oasis, Casablanca. Pensez à votre maillot, on s'occupe du reste.`,
+    sessions:{
+      contrast:["Circuit contraste","Sauna et bain glacé, 3 tours, 60 min"],
+      sauna:["Sauna finlandais","90°, 45 min"],
+      ice:["Bain glacé","Immersion guidée à 4°, 20 min"],
+      red:["Lumière rouge","Panneau corps entier, 20 min"],
+      massage:["Massage récupération","Massage profond, 60 min"]
+    }
+  },
+  en:{
+    locale:"en-GB",today:"Today",
+    saunaLong:"Finnish sauna",iceLong:"ice bath",sauna:"Sauna",ice:"Ice bath",rest:"Rest",
+    h1:'Heat, cold, then <em>rest.</em>',
+    intro:"Sauna, ice bath, red light and massage, all under one roof. Book your session in under a minute.",
+    f1a:"7am – 10pm",f1b:"Every day",f2a:"Women's space",f2b:"Dedicated and private",f3a:"WhatsApp",f3b:"Instant confirmation",
+    step1:"Choose a session",step2:"Pick a time",step3:"Your details",
+    sample:"Sample pricing for this mockup.",
+    circuit:"Contrast circuit, 3 rounds",
+    women:"Women-only space",womenSub:"Book in the dedicated women's area",
+    name:"Full name",phone:"WhatsApp number",hint:"Your confirmation and directions arrive on WhatsApp.",
+    footer:"Mockup designed by System Unity",
+    book:"Book now",busy:"Confirming…",booked:"You're booked.",bookedSub:"Your confirmation is on its way to WhatsApp.",
+    refLabel:"Reference",waFrom:"Prime Recovery Club, on WhatsApp",calendar:"Add to calendar",again:"New session",
+    dSession:"Session",dDate:"Date",dTime:"Time",dSpace:"Space",dPrice:"Total",mixed:"Mixed",wspace:"Women",
+    pickTime:"Pick a day and time",left:n=>n===1?"1 spot":`${n} spots`,full:"Full",
+    wa:(n,s,d,t,r)=>`Hi ${n},\nYour ${s} session is confirmed for ${d} at ${t}.\nReference ${r}\n\nPrime Recovery Club, Oasis, Casablanca. Just bring your swimwear, we'll take care of the rest.`,
+    sessions:{
+      contrast:["Contrast circuit","Sauna and ice bath, 3 rounds, 60 min"],
+      sauna:["Finnish sauna","90°, 45 min"],
+      ice:["Ice bath","Guided plunge at 4°, 20 min"],
+      red:["Red light","Full-body panel, 20 min"],
+      massage:["Recovery massage","Deep tissue, 60 min"]
+    }
+  }
+};
+const SESS={contrast:{p:350,min:60},sauna:{p:200,min:45},ice:{p:180,min:20},red:{p:220,min:20},massage:{p:450,min:60}};
+const TIMES=["07:00","08:30","10:00","12:00","14:00","16:00","18:30","20:00"];
+const CAP=6;
+const state={lang:"fr",session:null,day:0,time:null,women:false,ref:null};
+const $=id=>document.getElementById(id);
+const days=[...Array(10)].map((_,i)=>{const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()+i);return d});
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+try{const s=localStorage.getItem("prc-lang");if(s&&T[s])state.lang=s}catch(e){}
+
+/* French typography: thin no-break space before ? ! : ; */
+const fr=s=>state.lang==="fr"?s.replace(/ ([?!:;])/g," $1"):s;
+const longDate=(d,L)=>d.toLocaleDateString(L.locale,{weekday:"long",day:"numeric",month:"long"});
+/* deterministic, believable availability: busier evenings and weekends */
+function spots(day,i){
+  const d=days[day],wk=d.getDay()===0||d.getDay()===6;
+  const seed=(d.getDate()*31+i*17+(state.women?7:0))%11;
+  const peak=(i>=6||i===0)?3:0;
+  return Math.max(0,CAP-((seed%6)+peak+(wk?1:0)));
+}
+
+function renderStatic(){
+  const L=T[state.lang];
+  document.documentElement.lang=state.lang;
+  document.querySelectorAll("[data-i]").forEach(el=>{el.textContent=fr(L[el.dataset.i])});
+  document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===state.lang));
+  $("h1").innerHTML=L.h1;
+  $("women").setAttribute("aria-label",L.women);
+  const seq=["h","c","r","h","c","r","h","c"];
+  $("bar").innerHTML=seq.map((c,k)=>`<span class="${c}" style="--k:${k}"></span>`).join("");
+}
+function renderSessions(){
+  const L=T[state.lang];
+  $("sessions").innerHTML=Object.keys(SESS).map(id=>{const [t,d]=L.sessions[id];return `<button class="session" aria-pressed="${state.session===id}" data-s="${id}"><span class="t">${t}</span><span class="d">${d}</span><span class="p">${SESS[id].p}<small>MAD</small></span></button>`}).join("");
+  const c=$("circuit");c.classList.remove("on");void c.offsetWidth;c.classList.toggle("on",state.session==="contrast");
+}
+function renderDays(){
+  const L=T[state.lang];
+  $("days").innerHTML=days.map((d,i)=>`<button class="day" aria-pressed="${state.day===i}" data-d="${i}"><small>${i===0?L.today:d.toLocaleDateString(L.locale,{weekday:"short"}).replace(".","")}</small><b>${d.getDate()}</b></button>`).join("");
+}
+function renderSlots(animate){
+  const L=T[state.lang],el=$("slots");
+  el.innerHTML=TIMES.map((t,i)=>{
+    const n=spots(state.day,i),full=n===0;
+    return `<button class="slot${n>0&&n<=2?" low":""}" style="animation-delay:${i*30}ms" ${full?`disabled`:""} aria-pressed="${state.time===t}" data-t="${t}" aria-label="${t}, ${full?L.full:L.left(n)}">${t}<small>${full?L.full:L.left(n)}</small></button>`;
+  }).join("");
+  if(animate){el.classList.remove("anim");void el.offsetWidth;el.classList.add("anim")}
+  $("women").setAttribute("aria-checked",state.women);
+}
+function ready(){return state.session&&state.time&&$("name").value.trim().length>1&&$("phone").value.replace(/\D/g,"").length>=9}
+function renderDock(){
+  const L=T[state.lang];
+  $("dock").classList.toggle("on",!!state.session);
+  if(state.session){
+    const when=state.time?`${longDate(days[state.day],L)}, ${state.time}`:L.pickTime;
+    $("summary").innerHTML=`<b>${L.sessions[state.session][0]} <span>${SESS[state.session].p} MAD</span></b>${fr(when)}`;
+  }
+  $("book").disabled=!ready();
+}
+function renderAll(){renderStatic();renderSessions();renderDays();renderSlots(false);renderDock()}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.lang){state.lang=b.dataset.lang;try{localStorage.setItem("prc-lang",state.lang)}catch(e){};renderAll()}
+  else if(b.dataset.s){if(state.session===b.dataset.s)return;state.session=b.dataset.s;renderSessions();renderDock()}
+  else if(b.dataset.d){state.day=+b.dataset.d;state.time=null;renderDays();renderSlots(true);renderDock()}
+  else if(b.dataset.t){state.time=b.dataset.t;renderSlots(false);renderDock()}
+  else if(b.id==="women"){state.women=!state.women;state.time=null;renderSlots(true);renderDock()}
+});
+["name","phone"].forEach(id=>$(id).addEventListener("input",()=>{$("book").disabled=!ready()}));
+
+$("book").onclick=()=>{
+  const L=T[state.lang],btn=$("book");
+  btn.classList.add("busy");btn.innerHTML=`<span class="spin"></span><span>${L.busy}</span>`;
+  setTimeout(()=>{
+    state.ref="PRC-"+String(Math.floor(1000+Math.random()*9000));
+    const s=L.sessions[state.session][0],d=longDate(days[state.day],L);
+    $("details").innerHTML=[[L.dSession,s],[L.dDate,d],[L.dTime,state.time],[L.dSpace,state.women?L.wspace:L.mixed],[L.dPrice,SESS[state.session].p+" MAD"]]
+      .map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join("");
+    $("ref").textContent=state.ref;
+    const first=$("name").value.trim().split(/\s+/)[0];
+    $("bubble").textContent=fr(L.wa(first,s,d,state.time,state.ref));
+    $("bubble").insertAdjacentHTML("beforeend",`<time>${new Date().toLocaleTimeString(L.locale,{hour:"2-digit",minute:"2-digit"})}</time>`);
+    $("done").scrollTop=0;$("done").classList.add("on");
+    btn.classList.remove("busy");btn.innerHTML=`<span>${L.book}</span>`;
+    setTimeout(()=>$("ics").focus({preventScroll:true}),60);
+  },reduce?0:900);
+};
+
+/* real .ics file so the add-to-calendar button actually works */
+$("ics").onclick=()=>{
+  const L=T[state.lang],[h,m]=state.time.split(":").map(Number);
+  const st=new Date(days[state.day]);st.setHours(h,m);
+  const en=new Date(st.getTime()+SESS[state.session].min*60000);
+  const f=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d+/,"");
+  const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Prime Recovery Club//Booking//FR","BEGIN:VEVENT",
+    `UID:${state.ref}@primerecoveryclub`,`DTSTAMP:${f(new Date())}`,`DTSTART:${f(st)}`,`DTEND:${f(en)}`,
+    `SUMMARY:Prime Recovery Club — ${L.sessions[state.session][0]}`,"LOCATION:Oasis\\, Casablanca",
+    `DESCRIPTION:${L.refLabel} ${state.ref}`,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"}));
+  a.download=`prime-recovery-${state.ref}.ics`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$("again").onclick=()=>{$("done").classList.remove("on");state.session=null;state.time=null;renderSessions();renderSlots(false);renderDock();window.scrollTo({top:0,behavior:reduce?"auto":"smooth"})};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("done").classList.contains("on"))$("again").click()});
+
+renderAll();
+requestAnimationFrame(()=>$("wall").classList.add("lit"));
+setTimeout(()=>document.body.classList.remove("intro"),2600);
+
+/* temperatures settle once the alcoves are lit */
+function count(el,from,to,dur,delay){
+  if(reduce){el.textContent=to+"°";return}
+  el.textContent=from+"°";
+  setTimeout(()=>{const t0=performance.now();(function step(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=Math.round(from+(to-from)*e)+"°";if(p<1)requestAnimationFrame(step)})(t0)},delay);
+}
+count($("tHot"),24,90,1500,1300);
+count($("tCold"),24,4,1500,1450);
+
+/* steam rising from the left alcove and doorway only */
+(function(){
+  const c=$("steam"),ctx=c.getContext("2d");let w,h,parts=[];
+  function size(){const dpr=Math.min(2,devicePixelRatio||1);w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  const zones=[[.06,.26],[.34,.66]];
+  function spawn(init){const z=zones[Math.random()<.4?0:1];return{x:w*(z[0]+Math.random()*(z[1]-z[0])),y:init?h*(.35+Math.random()*.55):h*.9,r:14+Math.random()*30,vy:.18+Math.random()*.32,vx:(Math.random()-.5)*.15,life:0,ttl:420+Math.random()*380,max:.05+Math.random()*.07,ph:Math.random()*6.28}}
+  size();addEventListener("resize",size);
+  for(let i=0;i<18;i++)parts.push(spawn(true));
+  function frame(){
+    ctx.clearRect(0,0,w,h);
+    for(const p of parts){
+      p.life++;p.y-=p.vy;p.x+=p.vx+Math.sin(p.life/70+p.ph)*.18;p.r+=.05;
+      const k=p.life/p.ttl,a=p.max*Math.sin(Math.min(1,k)*Math.PI);
+      const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
+      g.addColorStop(0,`rgba(255,226,210,${a})`);g.addColorStop(1,"rgba(255,226,210,0)");
+      ctx.fillStyle=g;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fill();
+      if(k>=1)Object.assign(p,spawn(false));
+    }
+    requestAnimationFrame(frame);
+  }
+  if(!reduce)setTimeout(frame,1400);
+})();
+</script>
+</body>
+</html>
